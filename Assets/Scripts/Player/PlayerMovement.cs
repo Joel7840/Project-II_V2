@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
+    PlayersManager PM;
     //private List<GameObject> Players = new List<GameObject>();
     public float Speed;    
-    public float speedChange;
+    public float speedChange;    
+    public float playerMaxDist = 0.5f;    
+    public float speedFast;
+    public float speedSlow;
+
     public bool Right;
-    PlayersManager PM;
     private GameObject Player => GameObject.Find("Player");
-    public float playerMaxDist = 0.5f;
+    
 
     //private float _horizontal = 1;
     // Start is called before the first frame update
@@ -43,15 +46,18 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                speedChange = 1;
+                speedChange = speedFast;
+                
             }
             else if (Input.GetKey(KeyCode.LeftControl))
             {
-                speedChange = -1.5f;
+                speedChange = speedSlow;
+                
             }
             else
             {
                 speedChange = 0;
+                
             }
 
 

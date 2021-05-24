@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Noisedetector : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Noisedetector : MonoBehaviour
     private GameObject _NoiseDetector => gameObject;
     private Transform _Player;
     private Transform _Enemy;
+    public Canvas canvas;
 
     private float MaxDistance;
     private float minRange = 1f;
@@ -70,7 +72,7 @@ public class Noisedetector : MonoBehaviour
     private void PlaceMarker()
     {
         _Player = PM.Players[0].transform;
-        _NoiseDetector.transform.position = _Player.position + (_Enemy.position - _Player.position).normalized;
+        _NoiseDetector.transform.position = canvas.transform.position + (_Enemy.position - _Player.position).normalized * 500;
         
     }
 
@@ -83,7 +85,7 @@ public class Noisedetector : MonoBehaviour
 
     private void ChangeAlpha(bool zero)
     {
-        var _color = _NoiseDetector.GetComponent<SpriteRenderer>().color;
+        var _color = _NoiseDetector.GetComponent<Image>().color;
         if (zero)
         {           
             _color.a = 0f;            
@@ -92,7 +94,7 @@ public class Noisedetector : MonoBehaviour
         {            
             _color.a = DistanceFraction();            
         }
-        _NoiseDetector.GetComponent<SpriteRenderer>().color = _color;
+        _NoiseDetector.GetComponent<Image>().color = _color;
 
     }
 

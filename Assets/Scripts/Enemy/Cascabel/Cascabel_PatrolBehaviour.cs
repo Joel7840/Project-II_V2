@@ -12,6 +12,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
 
     private Vector2 _startPos;
     PlayersManager PM;
+    PlayerMovement PMove;
 
     private Transform _edgedetectionPoint;
     public LayerMask WhatIsGround;    
@@ -26,7 +27,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        _PlayerMaxDist = animator.GetFloat("PMDstandard");
         _timer = 0;
         _startPos = new Vector2(animator.transform.position.x, animator.transform.position.y);
 
@@ -34,6 +35,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
         _edgedetectionPoint = animator.gameObject.transform.GetChild(0);
 
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
+        PMove = GameObject.Find("Players").GetComponent<PlayerMovement>();
         _Player = PM.Players[0];
         _gameObject = animator.gameObject.transform;
         
@@ -47,6 +49,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
 
         if (PM.Players.Count != 0)
         {
+            ChangePMD(animator);
             var noiseHeard = IsPlayerClose() && (IsPlayerMoving() || IsRadioOn());
             animator.SetBool("IsChasing", noiseHeard);
 
@@ -136,6 +139,22 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
         return _Player.transform.GetChild(1).GetComponent<Radio>().On == true;
     }
 
+    private void ChangePMD(Animator anim)
+    {
+        if (PMove.speedChange == PMove.speedSlow)
+        {
+            _PlayerMaxDist = anim.GetFloat("PMDslow");
+        }
+        else if (PMove.speedChange == PMove.speedFast)
+        {
+            _PlayerMaxDist = anim.GetFloat("PMDfast");
+        }
+        else
+        {
+            _PlayerMaxDist = anim.GetFloat("PMDstandard");
+        }
+    }
 
-    
+
+
 }

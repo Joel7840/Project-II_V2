@@ -11,7 +11,8 @@ public class Character : MonoBehaviour
 
     public GameObject ligtherPrefab;
     public GameObject radioPrefab;
-    public GameObject noseDetectorPrefab;    
+    public GameObject noseDetectorPrefab;
+    public GameObject lightPrefab;
     private GameObject _player;
     private Vector3 targetPosition;
     private Vector3 playerPosition;
@@ -26,9 +27,10 @@ public class Character : MonoBehaviour
     }
     void Start()
     {
-        InstantiateLight();
-        InstantiateRadio();
-        InstantiateNoiseDetector();
+        InstantiateLighter();
+        InstantiateSomething(radioPrefab);
+        InstantiateSomething(lightPrefab);
+        //InstantiateNoiseDetector();
         kill = false;        
 
     }
@@ -43,9 +45,10 @@ public class Character : MonoBehaviour
                 if (_player != PM.Players[0])
                 {
                     _player = PM.Players[0];
-                    InstantiateLight();
-                    InstantiateRadio();
-                    InstantiateNoiseDetector();
+                    InstantiateLighter();
+                    InstantiateSomething(radioPrefab);
+                    InstantiateSomething(lightPrefab);
+                    //InstantiateNoiseDetector();
                 }
                 kill = false;
             }
@@ -65,26 +68,20 @@ public class Character : MonoBehaviour
         return vec;
     }
 
-    public void InstantiateLight()
+    public void InstantiateLighter()
     {
         Instantiate(ligtherPrefab, _player.transform.position, _player.transform.rotation, _player.transform);
         lighter = _player.transform.GetChild(0).gameObject.GetComponentInChildren<Lighter>();
-        _player.transform.GetChild(0).gameObject.GetComponentInChildren<Lighter>().gameObject.SetActive(false);
-        
+        _player.transform.GetChild(0).gameObject.GetComponentInChildren<Lighter>().gameObject.SetActive(false);      
         
     }
 
-    public void InstantiateRadio()
+    public void InstantiateSomething(GameObject g)
     {
-        Instantiate(radioPrefab, _player.transform.position, _player.transform.rotation, _player.transform);
+        Instantiate(g, _player.transform.position, _player.transform.rotation, _player.transform);
         
     }
-
-    public void InstantiateNoiseDetector()
-    {
-        Instantiate(noseDetectorPrefab, _player.transform.position, _player.transform.rotation, _player.transform);
-
-    }
+    
 
 
 }

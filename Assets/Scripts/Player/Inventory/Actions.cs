@@ -20,6 +20,7 @@ public class Actions : MonoBehaviour
     public int _slot;
 
     public GameObject piedraPrefab;
+    public GameObject flashPrefab;
 
     void Awake()
     {
@@ -68,6 +69,7 @@ public class Actions : MonoBehaviour
                     {
                         for(int j = 0; j < PM.Enemies.Count; j++)
                         {
+                            Instantiate(flashPrefab, PM.Players[0].transform.position, PM.Players[0].transform.rotation);
                             var dist = (PM.Enemies[j].transform.position - PM.Players[0].transform.position).magnitude;
                             if (dist >= 6 && dist < 10)
                             {
