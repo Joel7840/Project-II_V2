@@ -7,8 +7,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayersManager PM;
+    
     //private List<GameObject> Players = new List<GameObject>();
     public float Speed;    
+    public float NormalSpeed;
     public float speedChange;    
     public float playerMaxDist = 0.5f;    
     public float speedFast;
@@ -61,14 +63,16 @@ public class PlayerMovement : MonoBehaviour
             }
 
 
+
             if (Input.GetKey("d"))
             {
-                Speed = 2.5f + speedChange;
+                
+                Speed = NormalSpeed + speedChange;
                 Right = true;
             }
             else if (Input.GetKey("a"))
             {
-                Speed = -2.5f - speedChange;
+                Speed = -NormalSpeed - speedChange;
                 Right = false;
             }
             else

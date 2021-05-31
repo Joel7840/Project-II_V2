@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+
 public class Cascabel_PatrolBehaviour : StateMachineBehaviour
 {
     public float StayTime;
@@ -49,7 +50,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
 
         if (PM.Players.Count != 0)
         {
-            ChangePMD(animator);
+            ChangePMD(animator);            
             var noiseHeard = IsPlayerClose() && (IsPlayerMoving() || IsRadioOn());
             animator.SetBool("IsChasing", noiseHeard);
 
@@ -154,6 +155,8 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
             _PlayerMaxDist = anim.GetFloat("PMDstandard");
         }
     }
+
+    
 
 
 
