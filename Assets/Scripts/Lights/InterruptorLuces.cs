@@ -6,10 +6,13 @@ public class InterruptorLuces : MonoBehaviour
 {
     public List<GameObject> lightsOut;
     public List<GameObject> lightsIn;
+    public List<GameObject> room;
+    public List<GameObject> outside;
     public LayerMask player;
     private PlayersManager PM;
     private CameraFollow CF;
     public bool doorLeft;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +31,17 @@ public class InterruptorLuces : MonoBehaviour
                 {
                     TurnLightsOff(lightsOut);
                     TurnLightsOn(lightsIn);
+                    ActivateSprites(room);
+                    DesactivateSprites(outside);
+
                     ZoomIn();
                 }
                 if (IsPlayerDetectedRight())
                 {
                     TurnLightsOn(lightsOut);
                     TurnLightsOff(lightsIn);
+                    DesactivateSprites(room);
+                    ActivateSprites(outside);
                     ZoomOut();
                 }
             }
@@ -43,12 +51,16 @@ public class InterruptorLuces : MonoBehaviour
                 {
                     TurnLightsOn(lightsOut);
                     TurnLightsOff(lightsIn);
+                    DesactivateSprites(room);
+                    ActivateSprites(outside);
                     ZoomOut();
                 }
                 if (IsPlayerDetectedRight())
                 {
                     TurnLightsOff(lightsOut);
                     TurnLightsOn(lightsIn);
+                    ActivateSprites(room);
+                    DesactivateSprites(outside);
                     ZoomIn();
                 }
             }
@@ -99,4 +111,22 @@ public class InterruptorLuces : MonoBehaviour
         Camera.main.orthographicSize = 1.5f;
         CF.YOffset = 0.3f;
     }
+
+    private void DesactivateSprites(List<GameObject> list)
+    {
+        for(int i = 0; i < list.Count; i++)
+        {
+            list[i].GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
+    private void ActivateSprites(List<GameObject> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
+
+    
 }

@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     PlayerMovement PMove;
     private Transform cameraTransform => gameObject.transform;
     private Transform Target;
-    private float Z = -10;
+    public float Z;
     public float YOffset;
     private float XOffset;
     

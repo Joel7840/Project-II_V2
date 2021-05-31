@@ -80,7 +80,7 @@ public class Cascabel_PatrolBehaviour : StateMachineBehaviour
     private bool EdgeDetected()
     {
         RaycastHit2D hit = Physics2D.Raycast(_edgedetectionPoint.position, Vector2.down,
-            1.5f, WhatIsGround);
+            0.5f, WhatIsGround);
         return hit.collider == null;
     }
     private bool EdgeWallDetectedRight()
