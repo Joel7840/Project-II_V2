@@ -17,6 +17,7 @@ public class CameraFollow : MonoBehaviour
     public float globalSmoothing;
     private bool direction;
     private float timer;
+    public bool isShake;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class CameraFollow : MonoBehaviour
         
         Target = PM.Players[0].gameObject.transform;
         timer = 0;
+        isShake = false;
+        
 
     }
 
@@ -37,8 +40,12 @@ public class CameraFollow : MonoBehaviour
     {
         if (PM.Players.Count != 0)
         {
-            Target = PM.Players[0].gameObject.transform;
-            Follow();
+            if(!isShake)
+            {
+                Target = PM.Players[0].gameObject.transform;
+                Follow();
+            }     
+            
         }
     }
 
@@ -83,5 +90,20 @@ public class CameraFollow : MonoBehaviour
         {
             timer = 0;
         }
+    }
+
+    public void Shake(float d, float m)
+    {
+        PlayerMovement.movement = false;
+        isShake = true;
+        CameraShake.DoShake(d, m);
+        Invoke("ChangeShake", d);
+
+    }
+
+    public void ChangeShake()
+    {
+        isShake = false;
+        PlayerMovement.movement = true;
     }
 }

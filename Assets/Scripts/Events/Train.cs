@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    PlayersManager PM;
+    PlayersManager PM;    
 
     private Transform _Player;
     public GameObject _Train;
@@ -13,7 +13,7 @@ public class Train : MonoBehaviour
     void Start()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-
+        
     }
 
     // Update is called once per frame
@@ -21,8 +21,8 @@ public class Train : MonoBehaviour
     {
         if (PM.Players.Count != 0 && IsPlayerClose())
         {
-            _Train.GetComponent<Animator>().SetTrigger("Switch");
-
+            _Train.GetComponent<Animator>().SetTrigger("Switch");            
+            
         }
 
     }
@@ -34,4 +34,6 @@ public class Train : MonoBehaviour
         return Vector3.Distance(_Player.position, gameObject.transform.position) < _PlayerDistance;
 
     }
+
+    
 }

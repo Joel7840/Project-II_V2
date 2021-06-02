@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedSlow;
 
     public bool Right;
+    public static bool movement;
     private GameObject Player => GameObject.Find("Player");
     
 
@@ -25,25 +26,24 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        
-
     }
 
     private void Start()
     {
         Right = true;
+        movement = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();       
+        Move();
         
     }
 
     void Move()
     {
-        if (PM.Players.Count != 0)
+        if (PM.Players.Count != 0 && movement)
         {
 
             if (Input.GetKey(KeyCode.LeftShift))
@@ -65,8 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
 
             if (Input.GetKey("d"))
-            {
-                
+            {                
                 Speed = NormalSpeed + speedChange;
                 Right = true;
             }
