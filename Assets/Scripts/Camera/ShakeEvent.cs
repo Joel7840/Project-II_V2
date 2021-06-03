@@ -23,6 +23,7 @@ public class ShakeEvent : MonoBehaviour
         if(IsPlayerClose())
         {
             Activate(duration, magnitude);
+
         }
     }
 
@@ -35,13 +36,9 @@ public class ShakeEvent : MonoBehaviour
     }
     public void Activate(float d, float m)
     {
-        CF.Shake(d, m);
-        //Invoke("Destroy", 1);
+        CF.Shake(d, m);        
         Destroy(gameObject);
     }
 
-    /*private void Destroy()
-    {
-        Destroy(gameObject);
-    }*/
+    
 }

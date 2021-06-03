@@ -7,12 +7,15 @@ public class Kill : MonoBehaviour
     
     private PlayersManager PM;
     private Character Ch;
+
+    private AudioSource SFXkill;
     // Start is called before the first frame update
     void Start()
     {
         
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         Ch = GameObject.Find("Players").GetComponent<Character>();
+        SFXkill = GameObject.Find("KillSFX").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,7 +28,7 @@ public class Kill : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-
+            AudioManager.PlaySFX("muerte", SFXkill);
             PM.RemoveToList(collision.gameObject, PM.Players);
             PM.RemoveToList(collision.gameObject, PM.Allys);
             Destroy(collision.gameObject);

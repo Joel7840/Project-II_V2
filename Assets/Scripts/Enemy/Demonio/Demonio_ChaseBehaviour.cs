@@ -9,17 +9,17 @@ public class Demonio_ChaseBehaviour : StateMachineBehaviour
     private Transform _player;
     private Transform _edgedetectionPoint;
     public LayerMask lighter;
-    
-    
 
-    
+    private AudioSource SFXpersecucion;
+
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         _player = PM.Players[0].transform;
         _edgedetectionPoint = animator.gameObject.transform.GetChild(0);
-
-
+        SFXpersecucion = GameObject.Find("PersecucionSFX").GetComponent<AudioSource>();
+        AudioManager.PlaySFX("persecucion", SFXpersecucion);
     }
 
     
@@ -43,6 +43,7 @@ public class Demonio_ChaseBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        SFXpersecucion.Stop();
         animator.SetBool("IsChasing", false);
     }
 

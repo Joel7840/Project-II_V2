@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3110444397207135404}
   - component: {fileID: 3110444397207135405}
   - component: {fileID: 8566228349444552158}
+  - component: {fileID: 3394847254582110901}
+  - component: {fileID: 1685307448695859703}
   m_Layer: 0
   m_Name: Angel
   m_TagString: Untagged
@@ -154,3 +156,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17272123f9bc8094483bbba0dbbfa9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3394847254582110901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110444397207135411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827a55e585b96be4da4e0a7a8a0f0c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxDistance: 10
+  enemyType: 3
+--- !u!114 &1685307448695859703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110444397207135411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebd408922eba67489d03fc18abcd2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PlayerMaxDist: 3

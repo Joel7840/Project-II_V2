@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 5246430818025866544}
   - component: {fileID: 5837032573631949082}
   - component: {fileID: 1112134728785291039}
+  - component: {fileID: 8126907454511144257}
   m_Layer: 12
   m_Name: Cascabel1
   m_TagString: Enemy
@@ -5046,3 +5047,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 1
+--- !u!114 &8126907454511144257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771374324463189304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827a55e585b96be4da4e0a7a8a0f0c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxDistance: 10
+  enemyType: 2
+  minRange: 1
+  maxRange: 2
+  timer: 0

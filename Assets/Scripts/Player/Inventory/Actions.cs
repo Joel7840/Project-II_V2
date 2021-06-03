@@ -22,6 +22,10 @@ public class Actions : MonoBehaviour
     public GameObject piedraPrefab;
     public GameObject flashPrefab;
 
+    public AudioSource SFXlinterna;
+    public AudioSource SFXradio;
+    public AudioSource SFXcristal;
+
     void Awake()
     {
         _slot = 0;
@@ -70,6 +74,7 @@ public class Actions : MonoBehaviour
                         for(int j = 0; j < PM.Enemies.Count; j++)
                         {
                             Instantiate(flashPrefab, PM.Players[0].transform.position, PM.Players[0].transform.rotation);
+                            AudioManager.PlaySFX("piedra_luz", SFXcristal);
                             var dist = (PM.Enemies[j].transform.position - PM.Players[0].transform.position).magnitude;
                             if (dist >= 6 && dist < 10)
                             {
@@ -86,17 +91,32 @@ public class Actions : MonoBehaviour
                 }
                 if(i == 0)
                 {
-                    _lighter = PM.Players[0].transform.Find("Linterna(Clone)").gameObject;
-                    _lighter.SetActive(lighter);                             
-                    lighter = !lighter;                    
+                    _lighter = PM.Players[0].transform.Find("Linterna(Clone)").gameObject;                                                
                     
-                    
+                    if(_lighter.activeSelf == false)
+                    {                        
+                        AudioManager.PlaySFX("linterna", SFXlinterna);
+                    }
+                    else
+                    {
+                        AudioManager.PlaySFX("linterna2", SFXlinterna);                        
+                    }
+                    _lighter.SetActive(lighter);
+                    lighter = !lighter;
                 }
 
                 if(i == 1)
                 {
                     _radio = PM.Players[0].transform.Find("Radio(Clone)").gameObject;
                     _radio.GetComponent<Radio>().On = !_radio.GetComponent<Radio>().On;
+                    if(_radio.GetComponent<Radio>().On == true)
+                    {
+                        AudioManager.PlaySFX("radio", SFXradio);
+                    }
+                    else
+                    {
+                        SFXradio.Stop();
+                    }
                 }
                 
             }
@@ -163,5 +183,7 @@ public class Actions : MonoBehaviour
         }
         
     }
+
+    
 }
 

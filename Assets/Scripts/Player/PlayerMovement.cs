@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool Right;
     public static bool movement;
+
+    private AudioSource SFXpaso;
+    public float SFXspeedFast;
+    public float SFXspeedSlow;
     private GameObject Player => GameObject.Find("Player");
     
 
@@ -32,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Right = true;
         movement = true;
+        SFXpaso = GameObject.Find("PasoSFX").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,21 +50,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PM.Players.Count != 0 && movement)
         {
-
+            WalkSFX();
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 speedChange = speedFast;
-                
+                SFXpaso.pitch = SFXspeedFast;
             }
             else if (Input.GetKey(KeyCode.LeftControl))
             {
                 speedChange = speedSlow;
-                
+                SFXpaso.pitch = SFXspeedSlow;
             }
             else
             {
                 speedChange = 0;
-                
+                SFXpaso.pitch = 1;
             }
 
 
@@ -77,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 Speed = 0;
-
+                SFXpaso.Stop();
 
             }
 
@@ -136,6 +141,15 @@ public class PlayerMovement : MonoBehaviour
             
 
         }
+    }
+
+    private void WalkSFX()
+    {
+        if(Input.GetKeyDown("d") || Input.GetKeyDown("a"))
+        {
+            AudioManager.PlaySFX("paso", SFXpaso);
+        }        
+        
     }
 
     

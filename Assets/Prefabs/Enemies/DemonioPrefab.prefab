@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4941568321237278992}
   - component: {fileID: 645847441527674343}
   - component: {fileID: 8242449858636287452}
+  - component: {fileID: 4028496850399360897}
   m_Layer: 0
   m_Name: DemonioPrefab
   m_TagString: Enemy
@@ -5032,3 +5033,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 1
+--- !u!114 &4028496850399360897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4941568321237278999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827a55e585b96be4da4e0a7a8a0f0c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxDistance: 10
+  enemyType: 1
+  minRange: 1
+  maxRange: 2

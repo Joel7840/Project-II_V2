@@ -13,7 +13,8 @@ public class Cascabel_ChaseBehaviour : StateMachineBehaviour
     private Transform _gameObject;
     public float _PlayerMaxDist;
 
-
+    private AudioSource SFXpersecucion;
+    
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,7 +23,8 @@ public class Cascabel_ChaseBehaviour : StateMachineBehaviour
         PMove = GameObject.Find("Players").GetComponent<PlayerMovement>();
         _Player = PM.Players[0].transform;
         _gameObject = animator.gameObject.transform;
-
+        SFXpersecucion = GameObject.Find("PersecucionSFX").GetComponent<AudioSource>();
+        AudioManager.PlaySFX("persecucion", SFXpersecucion);
     }
 
 
@@ -44,6 +46,7 @@ public class Cascabel_ChaseBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        SFXpersecucion.Stop();
         animator.SetBool("IsChasing", false);
     }
 

@@ -10,8 +10,11 @@ public class Angel_ChaseBehaviour : StateMachineBehaviour
     private Transform _player;
     public LayerMask lighter;
     private Animator anim;
-
-
+        
+    private AudioSource SFXpersecucion;
+    
+    
+   
 
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,7 +22,8 @@ public class Angel_ChaseBehaviour : StateMachineBehaviour
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         _player = PM.Players[0].transform;
         anim = animator;
-
+        SFXpersecucion = GameObject.Find("PersecucionSFX").GetComponent<AudioSource>();
+        AudioManager.PlaySFX("persecucion", SFXpersecucion);
 
     }
 
@@ -44,7 +48,7 @@ public class Angel_ChaseBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        SFXpersecucion.Stop();
     }
 
     private bool IsPlayerClose()

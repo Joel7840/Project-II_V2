@@ -9,11 +9,13 @@ public class Train : MonoBehaviour
     private Transform _Player;
     public GameObject _Train;
     public float _PlayerDistance;
+
+    private AudioSource SFXtrain;
     // Start is called before the first frame update
     void Start()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        
+        SFXtrain = GameObject.Find("TrainSFX").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,8 +23,10 @@ public class Train : MonoBehaviour
     {
         if (PM.Players.Count != 0 && IsPlayerClose())
         {
-            _Train.GetComponent<Animator>().SetTrigger("Switch");            
-            
+            _Train.GetComponent<Animator>().SetTrigger("Switch");
+            AudioManager.PlaySFX("tren", SFXtrain);
+            Destroy(gameObject);
+
         }
 
     }

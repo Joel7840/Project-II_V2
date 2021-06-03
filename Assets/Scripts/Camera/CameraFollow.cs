@@ -19,6 +19,8 @@ public class CameraFollow : MonoBehaviour
     private float timer;
     public bool isShake;
 
+    public AudioSource SFXshake;
+
     private void Awake()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
@@ -96,6 +98,7 @@ public class CameraFollow : MonoBehaviour
     {
         PlayerMovement.movement = false;
         isShake = true;
+        AudioManager.PlaySFX("terremoto", SFXshake);
         CameraShake.DoShake(d, m);
         Invoke("ChangeShake", d);
 

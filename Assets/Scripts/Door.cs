@@ -20,6 +20,9 @@ public class Door : MonoBehaviour
     public GameObject DoorOut;
 
     public bool closed = true;
+    public bool metalDoor;    
+
+    private AudioSource SFXpuerta;
     
     // Start is called before the first frame update
 
@@ -31,6 +34,8 @@ public class Door : MonoBehaviour
     void Start()
     {
         Player = PM.Players[0].gameObject;
+        SFXpuerta = GameObject.Find("PuertaSFX").GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -46,12 +51,29 @@ public class Door : MonoBehaviour
                 if (closed)
                 {
                     IgnoreCollisions(closed);
+                    if(metalDoor)
+                    {
+                        AudioManager.PlaySFX("abrir_puerta_metal", SFXpuerta);
+                    }
+                    else
+                    {
+                        AudioManager.PlaySFX("abrir_puerta_madera", SFXpuerta);
+                    }
+                    
                     //ChangeSpriteToOpen();
 
                 }
                 else
                 {
                     IgnoreCollisions(closed);
+                    if (metalDoor)
+                    {
+                        AudioManager.PlaySFX("cerrar_puerta_metal", SFXpuerta);
+                    }
+                    else
+                    {
+                        AudioManager.PlaySFX("cerrar_puerta_madera", SFXpuerta);
+                    }
                     //ChangeSpriteToClose();
 
                 }
