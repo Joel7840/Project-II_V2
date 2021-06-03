@@ -5,14 +5,19 @@ using UnityEngine;
 public class AmbientChanger : MonoBehaviour
 {
     private PlayersManager PM;
+    private AudioManager AM;
     public LayerMask player;
     public string sonido1;
     public string sonido2;
+
+    public float sonido1Volumen;
+    public float sonido2Volumen;
 
     // Start is called before the first frame update
     void Start()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
+        AM = GameObject.Find("SoundManager").GetComponent<AudioManager>();
 
     }
 
@@ -23,10 +28,12 @@ public class AmbientChanger : MonoBehaviour
         {
             if (IsPlayerDetectedLeft())
             {
-                AudioManager.PlayAmbient(sonido1);
+                AM.GlobalAmbientVolume = sonido1Volumen;
+                AudioManager.PlayAmbient(sonido1);                
             }
             if (IsPlayerDetectedRight())
             {
+                AM.GlobalAmbientVolume = sonido2Volumen;
                 AudioManager.PlayAmbient(sonido2);
             }
         }

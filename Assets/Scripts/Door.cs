@@ -11,13 +11,11 @@ public class Door : MonoBehaviour
     public GameObject Out;
     public GameObject In;
 
-    public Sprite DoorInOpen;
-    public Sprite DoorInClose;
-    public Sprite DoorOutOpen;
-    public Sprite DoorOutClose;
+    public Sprite DoorOpen;
+    public Sprite DoorClose;    
 
-    public GameObject DoorIn;
-    public GameObject DoorOut;
+    public GameObject DoorSprite;
+    
 
     public bool closed = true;
     public bool metalDoor;    
@@ -98,13 +96,13 @@ public class Door : MonoBehaviour
 
     private void ChangeSpriteToOpen()
     {
-        DoorIn.GetComponent<SpriteRenderer>().sprite = DoorInOpen;
-        DoorOut.GetComponent<SpriteRenderer>().sprite = DoorOutOpen;
+        DoorSprite.GetComponent<SpriteRenderer>().sprite = DoorOpen;
+        
     }
 
     private void ChangeSpriteToClose()
     {
-        DoorIn.GetComponent<SpriteRenderer>().sprite = DoorInClose;
-        DoorOut.GetComponent<SpriteRenderer>().sprite = DoorOutClose;
+        DoorSprite.GetComponent<SpriteRenderer>().sprite = DoorClose;
+        
     }
 }

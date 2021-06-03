@@ -5,15 +5,19 @@ using UnityEngine;
 public class AudioActivator : MonoBehaviour
 {
     private PlayersManager PM;
+    private AudioManager AM;
     public LayerMask player;
     public string sonido1;
     public string sonido2;
-    
+
+    public float sonido1Volumen;
+    public float sonido2Volumen;
+
     // Start is called before the first frame update
     void Start()
     {
         PM = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        
+        AM = GameObject.Find("SoundManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -23,10 +27,12 @@ public class AudioActivator : MonoBehaviour
         {
             if (IsPlayerDetectedLeft())
             {
+                AM.GlobalMusicVolume = sonido1Volumen;
                 AudioManager.PlayMusic(sonido1);
             }
             if (IsPlayerDetectedRight())
             {
+                AM.GlobalMusicVolume = sonido2Volumen;
                 AudioManager.PlayMusic(sonido2);
             }
         }
