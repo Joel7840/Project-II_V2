@@ -17,10 +17,17 @@ public class Actions : MonoBehaviour
     private bool lighter;
     private bool blueLight;
 
+    private int first;
     public int _slot;
+    public float timer;
+    private bool changed;
+    private bool moreMesages;
+    private bool time;
 
     public GameObject piedraPrefab;
     public GameObject flashPrefab;
+
+    public GameObject radioMesage;
 
     public AudioSource SFXlinterna;
     public AudioSource SFXradio;
@@ -37,17 +44,43 @@ public class Actions : MonoBehaviour
 
     private void Start()
     {
-
-
+        moreMesages = false;
+        first = 0;
         blueLight = true;
         lighter = true;
-        
+        changed = false;
     }
 
 
     void Update()
     {
+        if(time)
+        {
+            timer += Time.deltaTime;
+        }
+        Debug.Log(timer);
+        if(timer > 6 && changed)
+        {
+            DialogueManager.ChangeText(3, 4, Color.white, GameObject.Find("TextBackground"), GameObject.Find("TextBox"));
+            
+            
+            if(moreMesages)
+            {
+                if (timer > 10 && timer < 13) { DialogueManager.ChangeText(4, 3, Color.white, GameObject.Find("TextBackground"), GameObject.Find("TextBox")); }
+                else if (timer > 13 && timer < 16) { DialogueManager.ChangeText(5, 3, Color.grey, GameObject.Find("TextBackground"), GameObject.Find("TextBox")); }
+                else if (timer > 16 && timer < 19) { DialogueManager.ChangeText(6, 3, Color.white, GameObject.Find("TextBackground"), GameObject.Find("TextBox")); }
+                else if (timer > 19 && timer < 22) { DialogueManager.ChangeText(7, 3, Color.grey, GameObject.Find("TextBackground"), GameObject.Find("TextBox")); moreMesages = false; changed = false; }
+                
+                
+            }
+            else
+            {
+                time = false;
+                changed = false;
+            }
+        }
         
+
         //TIRAR OBJETO 
         if (Input.GetKeyDown("q"))
         {
@@ -112,6 +145,22 @@ public class Actions : MonoBehaviour
                     if(_radio.GetComponent<Radio>().On == true)
                     {
                         AudioManager.PlaySFX("radio", SFXradio);
+                        if(PM.Players[0].transform.position.magnitude < radioMesage.transform.position.magnitude)
+                        {
+                            DialogueManager.ChangeText(2, 6, Color.white, GameObject.Find("TextBackground"), GameObject.Find("TextBox"));
+                            if(first == 0)
+                            {
+                                moreMesages = true;
+                            }
+                            first++;
+                            time = true;
+                            timer = 0;
+                            changed = true;                            
+                        }
+                        else
+                        {
+                            DialogueManager.ChangeText(13, 6, Color.white, GameObject.Find("TextBackground"), GameObject.Find("TextBox"));
+                        }
                     }
                     else
                     {

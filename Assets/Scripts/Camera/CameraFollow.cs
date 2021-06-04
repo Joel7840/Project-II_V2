@@ -99,6 +99,7 @@ public class CameraFollow : MonoBehaviour
         PlayerMovement.movement = false;
         isShake = true;
         AudioManager.PlaySFX("terremoto", SFXshake);
+        Invoke("StopAudio", 3);
         CameraShake.DoShake(d, m);
         Invoke("ChangeShake", d);
 
@@ -108,5 +109,10 @@ public class CameraFollow : MonoBehaviour
     {
         isShake = false;
         PlayerMovement.movement = true;
+    }
+
+    private void StopAudio()
+    {
+        SFXshake.Stop();
     }
 }

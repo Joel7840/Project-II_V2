@@ -33,7 +33,7 @@ public class InterruptorLuces : MonoBehaviour
                     TurnLightsOn(lightsIn);
                     ActivateSprites(room);
                     DesactivateSprites(outside);
-
+                    
                     ZoomIn();
                 }
                 if (IsPlayerDetectedRight())
@@ -42,6 +42,7 @@ public class InterruptorLuces : MonoBehaviour
                     TurnLightsOff(lightsIn);
                     DesactivateSprites(room);
                     ActivateSprites(outside);
+                    
                     ZoomOut();
                 }
             }
