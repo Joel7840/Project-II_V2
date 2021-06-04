@@ -7,8 +7,11 @@ public class DialogueManager : MonoBehaviour
 {
     public static GameObject _textPanel;
     public static GameObject _textBox;
-    private static string _text;
+
+    
     private static Animator anim;
+
+    private static string _text;
     private static float timer;
     private static float maxTime;
     private static bool active;
